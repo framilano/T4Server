@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "Enter the port you want to allow (Exemple: 28960)"
+echo "Enter the port you want to allow (Example: 28960)"
 read -p 'Port Number: ' port
-echo "Name of your port (Exemple: T5Server)"
+echo "Name of your port (Example: T4Server)"
 read -p 'Name: ' name
 ufw allow $port comment $name && \
 if [ $? -eq 0 ]; then

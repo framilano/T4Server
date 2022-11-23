@@ -146,30 +146,29 @@ fi
 mbinary=('Game Binary Installation.' 'Installation des fichiers binaires.')
 {
     # Download plutonium-updater
-    cd $HOME/T5Server/Plutonium/
+    cd Plutonium/
     wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
     tar xfv plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
     rm plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
     chmod +x plutonium-updater
 
     # Make executable script
-    chmod +x $HOME/T5Server/Plutonium/T5Server.sh
-    chmod +x $HOME/T5Server/Plutonium/T5_mp_server.sh
-    chmod +x $HOME/T5Server/Plutonium/T5_zm_server.sh
+    #chmod +x Plutonium/T4Server.sh
+    chmod +x T4_mp_server.sh
+    chmod +x T4_zm_server.sh
 
     # Download Game File
-    cd $HOME/T5Server/
-    wget https://plutonium.pw/pluto_t5_full_game.torrent
+    wget https://plutonium.pw/pluto_t4_full_game.torrent
     tmpfile=$(mktemp)
     chmod a+x $tmpfile
     echo "killall transmission-cli" > $tmpfile
-    transmission-cli -f $tmpfile pluto_t5_full_game.torrent -w $HOME/T5Server
+    transmission-cli --download-dir ./  pluto_t4_full_game.torrent
 
     # Clean Installation
-    rm $HOME/T5Server/pluto_t5_full_game.torrent
-    mv $HOME/T5Server/pluto_t5_full_game $HOME/T5Server/Server
-    rm -r $HOME/T5Server/Server/redist
-    rm $HOME/T5Server/README.md
+    rm pluto_t4_full_game.torrent
+    mv pluto_t4_full_game Server
+    rm -r Server/redist
+    rm README.md
 
 } > /dev/null 2>&1 &
   Spinner "${mbinary[$languages]}"

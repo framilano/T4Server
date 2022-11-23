@@ -8,8 +8,8 @@ echo "----------------------------------------------------------"
 ipadress="YOURIPADRESS"
 ## -- Zombies Servers -- ##
 # Number of running servers
-server_number=$(ps aux | grep t5sp | grep -v grep |  wc -l)
-servers=$(ps aux | grep t5sp | grep -v grep)
+server_number=$(ps aux | grep t4sp | grep -v grep |  wc -l)
+servers=$(ps aux | grep t4sp | grep -v grep)
 for ((i=1; i<=$server_number; i++))
   do
     # Get PID process
@@ -34,8 +34,8 @@ for ((i=1; i<=$server_number; i++))
 
 ## -- Multiplayers Servers -- ##
 # Number of running servers
-server_number=$(ps aux | grep t5mp | grep -v grep |  wc -l)
-servers=$(ps aux | grep t5mp | grep -v grep)
+server_number=$(ps aux | grep t4mp | grep -v grep |  wc -l)
+servers=$(ps aux | grep t4mp | grep -v grep)
 for ((i=1; i<=$server_number; i++))
   do
     # Get PID process

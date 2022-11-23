@@ -6,22 +6,22 @@ _mydir="$(dirname $_script)"
 # Name of the server shown in the title of the terminal window
 NAME="TDM 1"
 # Your Game Path (where there is binkw32.dll)
-PAT=~/T5Server/Server
+PAT=~/T4Server/Server
 # Paste the server key from https://platform.plutonium.pw/serverkeys
 KEY="YOURKEY"
 # Name of the config file the server should use. (default: dedicated.cfg)
-CFG=dedicated.cfg
+CFG=dedicated_mp.cfg
 # Port used by the server (default: 28960) -> Don't forget to allow server port in ufw fail2ban
 PORT=28960
-# Game Mode ( Multiplayer / Zombie ) -> ( t5mp / t5sp )
-MODE=t5mp
+# Game Mode ( Multiplayer / Zombie ) -> ( t4mp / t4sp )
+MODE=t4mp
 # Mod name (default "")
 MOD=""
 ## End Region
 
 ## Update Region
 # Plutonium game dir
-INSTALLDIR=~/T5Server/Plutonium
+INSTALLDIR=~/T4Server/Plutonium
 
 # Update your server game file
 ./plutonium-updater -d "$INSTALLDIR"
