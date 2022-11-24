@@ -1,17 +1,10 @@
 #!/bin/bash
 clear
 
-# Sudoer permission
-if [[ $UID != 0 ]]; then
-    echo "Please run this script with sudo:"
-    echo "sudo env "HOME='$HOME'" $0 $*"
-    exit 1
-fi
-
 # Colors Section
 YELLOW='\033[1;33m'
 GREY='\033[1;37m'
-PURPUL='\033[0;35m'
+PURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
@@ -35,97 +28,103 @@ printf "\r [${GREEN}\xE2\x9C\x94${NC}] $1 \n"
 # Home Section
 logo(){
 printf "${RED}
-  _______ _____    _____                            _____           _        _ _           
- |__   __| ____|  / ____|                          |_   _|         | |      | | |          
-    | |  | |__   | (___   ___ _ ____   _____ _ __    | |  _ __  ___| |_ __ _| | | ___ _ __ 
-    | |  |___ \   \___ \ / _ \ \'__\ \ / / _ \ \'__|   | | | \'_ \/ __| __/ _\` | | |/ _ \ \'__|
-    | |   ___) |  ____) |  __/ |   \ V /  __/ |     _| |_| | | \__ \ || (_| | | |  __/ |   
-    |_|  |____/  |_____/ \___|_|    \_/ \___|_|    |_____|_| |_|___/\__\__,_|_|_|\___|_|   
+
+
+
+
+d888888P dP   dP    .d88888b                                                  dP                     dP            dP dP                   
+   88    88   88    88.    \"'                                                 88                     88            88 88                   
+   88    88aaa88    \`Y88888b. .d8888b. 88d888b. dP   .dP .d8888b. 88d888b.    88 88d888b. .d8888b. d8888P .d8888b. 88 88 .d8888b. 88d888b. 
+   88         88          \`8b 88ooood8 88'  \`88 88   d8\' 88ooood8 88\'  \`88    88 88\'  \`88 Y8ooooo.   88   88\'  \`88 88 88 88ooood8 88'  \`88 
+   88         88    d8\'   .8P 88.  ... 88       88 .88\'  88.  ... 88          88 88    88       88   88   88.  .88 88 88 88.  ... 88       
+   dP         dP     Y88888P  \`88888P\' dP       8888P\'   \`88888P\' dP          dP dP    dP \`88888P\'   dP   \`88888P8 dP dP \`88888P\' dP       
+                                                                                                                                           
+                                                                                                                                           
                                                                                            
                                                                                            
  ${NC}                                                                                        
-                         ╔══════════════════════════════╗
-                         ║      Made by ${BLUE}Sterbweise${NC}      ║
-                         ╠══════════════════════════════╣
-                         ║ ${PURPUL}\e]8;;https://github.com/Sterbweise\e\\Github\e]8;;\e\\\\${NC} | ${RED}\e]8;;https://www.youtube.com/channel/UCRWfp6bi0-wlhaRe2YQ2dwQ\e\\Youtube\e]8;;\e\\\\${NC} | ${GREY}\e]8;;https://forum.plutonium.pw/user/minami\e\\Plutonium\e]8;;\e\\\\${NC} ║
-                         ╚══════════════════════════════╝ \n \n"
+╔══════════════════════════════╗
+║         Made by ${BLUE}fra98_${NC}       ║
+║    Forked from ${PURPLE}Sterbweise${NC}    ║
+╚══════════════════════════════╝
+"
 }
 
 logo
 
-# Languages Selection
-printf "
-${YELLOW}Select your languages : ${NC}
-[0] English
-[1] French
-\n
-"
-read -p '>>> ' languages
-clear
-logo
+echo "Let's update your system first..."
+sudo apt update && sudo apt upgrade -y
+sleep 3
 
 # Choices Section
-mfirewall=('Do you want install UFW firewall (Y/n) ?' 'Voulez-vous installer le pare-feu UFW (O/n) ?')
-printf "${YELLOW}${mfirewall[$languages]}${NC}\n"
+mfirewall='Do you want install UFW firewall (Y/n) ?'
+printf "${YELLOW}${mfirewall}${NC}\n"
 read -p '>>> ' firewall
 
-mdotnet=('Do you want install Dotnet [Required for IW4Madmin] (Y/n) ?' 'Voulez-vous installer Dotnet [Requis pour IW4Madmin] (O/n) ?')
-printf "\n\n${YELLOW}${mdotnet[$languages]}${NC}\n"
+mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
+printf "${YELLOW}${mupdater}${NC}\n"
+read -p '>>> ' updater
+
+mtorrent='Do you need to download T4 game files (Y/n) ?'
+printf "${YELLOW}${mtorrent}${NC}\n"
+read -p '>>> ' torrent
+
+mwine='Do you need to install wine dependecies? (Y/n) ?'
+printf "${YELLOW}${mwine}${NC}\n"
+read -p '>>> ' winecheck
+
+mdotnet='Do you want install Dotnet [Required for IW4Madmin] (Y/n) ?'
+printf "${YELLOW}${mdotnet}${NC}\n"
 read -p '>>> ' dotnet
 stty igncr
-clear
-logo
 
-# Update Systeme
-mupdate=('Updating the system' 'Mise a jours du systeme')
-{
-apt update
-} > /dev/null 2>&1 &
-Spinner "${mupdate[$languages]}"
+clear
 
 # Setup Firewall
-if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] || [ "$firewall" = 'o' ] || [ "$firewall" = 'O' ] ; then
-  mfirewall2=('Firewall installation and ssh port opening.' 'Installation du pare-feu et ouverture du port ssh.') 
+if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
+  mfirewall2='Firewall installation and ssh port opening.' 
   {
-    apt install ufw fail2ban -y && \
-    ufw allow 22/tcp && \
-    ufw default allow outgoing && \
-    ufw default deny incoming && \
-    ufw -f enable
+    sudo apt install ufw fail2ban -y && \
+    sudo ufw allow 22/tcp && \
+    sudo ufw default allow outgoing && \
+    sudo ufw default deny incoming && \
+    sudo ufw -f enable
   } > /dev/null 2>&1 &
-  Spinner "${mfirewall2[$languages]}"
+  Spinner "${mfirewall2}"
 fi
 
 # Enable 32 bit packages
-mbit=('Enabling 32-bit packages' 'Activation des paquets 32 bits')
+mbit='Enabling 32-bit packages'
 {
-  dpkg --add-architecture i386 && \
-  apt-get update -y && \
-  apt-get install wget gnupg2 software-properties-common apt-transport-https curl transmission-cli -y
+  sudo dpkg --add-architecture i386 && \
+  sudo apt-get install wget gnupg2 software-properties-common apt-transport-https curl transmission-cli -y
 } > /dev/null 2>&1 &
-Spinner "${mbit[$languages]}"
+Spinner "${mbit}"
 
 # Installing Wine
-mwine=('Installing Wine.' 'Installation de Wine.')
-{
-  wget -nc https://dl.winehq.org/wine-builds/winehq.key
-  apt-key add winehq.key && \
-  apt-add-repository 'deb https://dl.winehq.org/wine-builds/debian/ buster main'
-  rm winehq.key
-  apt update -y
-  apt install --install-recommends winehq-stable -y
+if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
+  mwine2='Installing Wine'
+  {
+    wget -nc https://dl.winehq.org/wine-builds/winehq.key
+    sudo apt-key add winehq.key
+    sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' -y
+    rm winehq.key
+    sudo apt update -y
+    sudo apt install --install-recommends winehq-staging -y
+    sudo apt install winetricks -y
 
-  # Add Variables to the environment at the end of ~/.bashrc
-  echo -e 'export WINEPREFIX=~/.wine\nexport WINEDEBUG=fixme-all\nexport WINEARCH=win64' >> ~/.bashrc
-  echo -e 'export DISPLAY=:0' >> ~/.bashrc
-  source ~/.bashrc
-  winecfg
-} > /dev/null 2>&1 &
-Spinner "${mwine[$languages]}"
+    # Add Variables to the environment at the end of ~/.bashrc
+    echo -e 'export WINEPREFIX=~/.wine\nexport WINEDEBUG=fixme-all\nexport WINEARCH=win64' >> ~/.bashrc
+    echo -e 'export DISPLAY=:0' >> ~/.bashrc
+    source ~/.bashrc
+    winecfg
+  } > /dev/null 2>&1 &
+  Spinner "${mwine2}"
+fi
 
 # Dotnet Installation
-if [ $dotnet == 'y' ] || [ $dotnet == '' ] || [ $dotnet == 'Y' ] || [ $dotnet == 'o' ] || [ $dotnet == 'O' ] ; then
-  mdotnet2=('Installing Dotnet.' 'Installation de Dotnet.')
+if [ $dotnet == 'y' ] || [ $dotnet == '' ] || [ $dotnet == 'Y' ] ; then
+  mdotnet2='Installing Dotnet'
   {
     #Dotnet Package
     wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -139,44 +138,65 @@ if [ $dotnet == 'y' ] || [ $dotnet == '' ] || [ $dotnet == 'Y' ] || [ $dotnet ==
     #Install the runtime
     apt-get install -y aspnetcore-runtime-3.1
 	  apt-get install -y aspnetcore-runtime-6.0
-  } > /dev/null 2>&1 &
-  Spinner "${mdotnet2[$languages]}"
+  } #> /dev/null 2>&1 &
+  Spinner "${mdotnet2}"
 fi
 
-mbinary=('Game Binary Installation.' 'Installation des fichiers binaires.')
-{
-    # Download plutonium-updater
-    cd Plutonium/
-    wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-    tar xfv plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-    rm plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-    chmod +x plutonium-updater
+if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
+  mupdater2='Installing plutonium-updater'
+  {
+      # Download plutonium-updater
+      cd Plutonium/
+      wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      tar xfv plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      rm plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      sudo chmod +x plutonium-updater
 
-    # Make executable script
-    #chmod +x Plutonium/T4Server.sh
-    chmod +x T4_mp_server.sh
-    chmod +x T4_zm_server.sh
+      # Make executable script
+      #chmod +x Plutonium/T4Server.sh
+      sudo chmod +x T4_mp_server.sh
+      sudo chmod +x T4_zm_server.sh
 
-    # Download Game File
-    wget https://plutonium.pw/pluto_t4_full_game.torrent
-    tmpfile=$(mktemp)
-    chmod a+x $tmpfile
-    echo "killall transmission-cli" > $tmpfile
-    transmission-cli --download-dir ./  pluto_t4_full_game.torrent
+  } > /dev/null 2>&1 &
+  Spinner "${mupdater2}"
+fi
 
-    # Clean Installation
-    rm pluto_t4_full_game.torrent
-    mv pluto_t4_full_game Server
-    rm -r Server/redist
-    rm README.md
 
-} > /dev/null 2>&1 &
-  Spinner "${mbinary[$languages]}"
+if [ "$torrent" = 'y' ] || [ "$torrent" = '' ] || [ "$torrent" = 'Y' ] ; then
+  mbinary='Game Binary Installation (wait for torrent to end).'
+  {
+      # Download plutonium-updater
+      cd Plutonium/
+      wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      tar xfv plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      rm plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
+      sudo chmod +x plutonium-updater
 
-mfinish=('Installation finished.' 'Installation terminee.')
-mquit=('ENTER to quit.' 'ENTER pour quitter.')
-printf "\n${GREEN}${mfinish[$languages]}${NC}\n"
-printf "\n${mquit[$languages]}"
+      # Make executable script
+      #chmod +x Plutonium/T4Server.sh
+      sudo chmod +x T4_mp_server.sh
+      sudo chmod +x T4_zm_server.sh
+      
+      # Download Game File
+      cd ..
+      wget https://plutonium.pw/pluto_t4_full_game.torrent
+      tmpfile=$(mktemp)
+      chmod a+x $tmpfile
+      echo "killall transmission-cli" > $tmpfile
+      transmission-cli --download-dir ./ pluto_t4_full_game.torrent
+
+      # Clean Installation
+      rm pluto_t4_full_game.torrent
+      cp -r pluto_t4_full_game/* T4Gamefiles/
+      rm -rf pluto_t4_full_game
+  } #> /dev/null 2>&1 &
+  Spinner "${mbinary}"
+fi
+
+mfinish='Installation finished.'
+mquit='ENTER to quit.'
+printf "\n${GREEN}${mfinish}${NC}\n"
+printf "\n${mquit}"
 stty -igncr
 read
 exit
