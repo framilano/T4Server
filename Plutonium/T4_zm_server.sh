@@ -6,9 +6,9 @@ _mydir="$(dirname $_script)"
 # Name of the server shown in the title of the terminal window
 NAME="T4 Zombies 1"
 # Your Game Path (where there is binkw32.dll)
-PAT="PATH_TO_T4Gamefiles folder"
+PAT="path_to_T4Gamefiles"
 # Paste the server key from https://platform.plutonium.pw/serverkeys
-KEY=""
+KEY="your_server_key_goes_here"
 # Name of the config file the server should use. (default: dedicated_sp.cfg)
 CFG=dedicated_zm.cfg
 # Port used by the server (default: 28960) -> Don't forget to allow server port in ufw fail2ban
@@ -20,8 +20,8 @@ MOD=""
 ## End Region
 
 ## Update Region
-# Plutonium game dir
-INSTALLDIR="PATH_TO_T4Server/Plutonium folder"
+# Plutonium game dir, inside this repository
+INSTALLDIR="full_path_to_this_script_dir"
 # Update your server game file
 ./plutonium-updater -d "$INSTALLDIR"
 ## End Region

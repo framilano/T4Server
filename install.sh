@@ -164,19 +164,7 @@ fi
 
 if [ "$torrent" = 'y' ] || [ "$torrent" = '' ] || [ "$torrent" = 'Y' ] ; then
   mbinary='Game Binary Installation (wait for torrent to end).'
-  {
-      # Download plutonium-updater
-      cd Plutonium/
-      wget https://github.com/mxve/plutonium-updater.rs/releases/latest/download/plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-      tar xfv plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-      rm plutonium-updater-x86_64-unknown-linux-gnu.tar.gz
-      sudo chmod +x plutonium-updater
-
-      # Make executable script
-      #chmod +x Plutonium/T4Server.sh
-      sudo chmod +x T4_mp_server.sh
-      sudo chmod +x T4_zm_server.sh
-      
+  {      
       # Download Game File
       cd ..
       wget https://plutonium.pw/pluto_t4_full_game.torrent
