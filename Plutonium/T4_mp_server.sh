@@ -8,11 +8,11 @@ NAME="TDM 1"
 # Your Game Path (where there is binkw32.dll)
 PAT=~/T4Server/Server
 # Paste the server key from https://platform.plutonium.pw/serverkeys
-KEY="YOURKEY"
+KEY="your_server_key_goes_here"
 # Name of the config file the server should use. (default: dedicated.cfg)
 CFG=dedicated_mp.cfg
 # Port used by the server (default: 28960) -> Don't forget to allow server port in ufw fail2ban
-PORT=28960
+PORT=28961
 # Game Mode ( Multiplayer / Zombie ) -> ( t4mp / t4sp )
 MODE=t4mp
 # Mod name (default "")
