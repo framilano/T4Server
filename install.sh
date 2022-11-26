@@ -59,7 +59,7 @@ sudo apt update && sudo apt upgrade -y
 sleep 3
 
 # Choices Section
-mfirewall='Do you want install UFW firewall and setup server access ports? (Y/n) ?'
+mfirewall='Do you want install UFW firewall to allow traffic on this server? (Y/n) ?'
 printf "${YELLOW}${mfirewall}${NC}\n"
 read -p '>>> ' firewall
 
@@ -68,8 +68,8 @@ read -p 'Port Number: ' port
 echo "Name of your port (Example: T4Server-0)"
 read -p 'Name: ' rulename
 
-echo "Do you want to enable traffic on FTP port 21? (Useful to set-up FastDL if you need to host modded maps or mods)"
-read -p '>>> ' ftpcheck
+echo "Do you want to enable traffic on a HTTP port 8000? (Useful to set-up FastDL if you need to host modded maps or mods)"
+read -p '>>> ' httpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
@@ -111,9 +111,9 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
   Spinner "${mfirewall2}"
 fi
 
-#Setup optional FTP Port
-if [ "$ftpcheck" = 'y' ] || [ "$ftpcheck" = '' ] || [ "$ftpcheck" = 'Y' ] ; then
-  sudo ufw allow ftp && \
+#Setup optional HTTP Port
+if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
+  sudo ufw allow 8000/tcp && \
 fi
 
 # Installing Wine
