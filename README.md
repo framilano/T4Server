@@ -9,15 +9,15 @@ Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
 # Synopsis
 In this guide we'll cover the following topics:
-- Scripts installation, `install.sh` and `T4_**_server.sh`. The first one starts the configuration (dependencies and firewall ports set-up), the second one actually starts the server using Wine.
-- Manual vars changing, depending on your needs
+- Scripts usage, `install.sh` and `T4_**_server.sh`. The first one starts the configuration process (dependencies and firewall ports set-up), the second one starts the actual server using Wine.
+- Manual variables changing, depending on your needs (ports, IPs, folders).
 - Setting up FastDL for easier custom maps support on your server
 
 ## Requirements
 + Ubuntu >22.04
-+ 10GB dedicated for this server
-+ Root permissions
-+ T4-WaW gamefiles, you can easily find them on your own
++ 10GB dedicated for this server.
++ Root permissions.
++ T4-WaW gamefiles, you can easily find them on your own. [I highly recommend removing unnecessary game files](https://plutonium.pw/docs/server/t4/setting-up-a-server/#4-optional-slimming-down-server-directory)
 
 ## Instructions
 1. Clone the repository wherever you need to: 
@@ -32,45 +32,22 @@ cd T4Server/
 ```shell
 ./install.sh
 ```
-You'll be asked to type your machine root password, follow the instructions and you can choose to install:
-- UFW firewall for port forwarding. You'll be asked to choose the port to open for this Server and if you want to allow port 8000 for an HTTP Server (aka FastDL support on your Server)
+
+You'll be asked to type your OS root password, follow the instructions and you can choose to install:
+- UFW firewall for port forwarding. You'll be asked to choose which port to open for this Server and if you want to allow port 8000 for an HTTP Server (aka FastDL support on your Server)
 - Crossplatform [plutonium-updater](https://github.com/mxve/plutonium-updater.rs) by mxve.
 - Wine dependencies.
 
-These steps are necessary, but it allows the user to choose if they need them right now or they can provide their own versions (like using Wine Stable instead of Wine Staging).
+These steps are necessary, but it allows the user to choose if they need them during configuration or they can provide their own versions (like using Wine Stable instead of Wine Staging).
 
 ### I highly suggest to restart your VM/Container/OS after completing the installation, just to be sure that every env variable has been set correctly.
 
 ## Configuration
-1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with already existing one.
+1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with the already existing one.
 2. Move to `/T4Server/T4Gamefiles/main` Folder.
 3. Edit `dedicated_zm.cfg` or `dedicated_mp.cfg` according to your needs (change map rotation, [enable FastDL](https://plutonium.pw/docs/server/t4/fastdl/)).
 4. Move to `/T4Server/Plutonium` Folder.
 5. Edit `T4_**_server.sh` with your informations. Specify `/Plutonium` and `/T4Gamefiles` directories with their full paths, type your Server Key.
-
-### [Optional] FastDL support 
-For FastDL to work you need an HTTP Server serving your mods files. You can easily set up an http server with a single python module line:
-```shell
-python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/
-```
-We're setting the HTTP Server to only serve files in `/home/ubuntu/T4Server/Plutonium/storage/t4/` you should type here the path to your `mods` directory, the default port is 8000.
-In this guide I assume that both HTTP and Plutonium Servers are on the same machine, but that's not required.
-
-To easily start all the components and scripts I need at startup here's how I configured my crontab file
-```shell
-#Dynamically updates the IP address for the HTTP Server
-@reboot sed -i "/set sv_wwwBaseURL/c\set sv_wwwBaseURL \"http://$(curl ifconfig.me):8000\"" "/home/ubuntu/T4Server/T4Gamefiles/main/dedicated_zm.cfg"
-
-#Start HTTP Server
-@reboot (python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/) &
-
-#Starts Plutonium Server
-@reboot (cd /home/ubuntu/T4Server/Plutonium && ./T4_zm_server.sh) &
-```
-
-The first command is only useful if your VM/OS changes its public IP address every time you turn it ON, for instance, AWS EC2 instances. 
-
-With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicated_zm.cfg` with my current public IP address. 
 
 ## Launch Server
 1. Move to `/T4Server/Plutonium` Folder.
@@ -80,6 +57,29 @@ With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicate
 ```
 
 It will update first your Plutonium files using `plutonium-updater`.
+
+### [Optional] FastDL support 
+For FastDL to work you need an HTTP Server serving your mods files. You can easily set up an http server with a single python module line:
+```shell
+python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/
+```
+We're setting the HTTP Server to only serve files in `/home/ubuntu/T4Server/Plutonium/storage/t4/` you should type here the path to your `mods` directory, the default port is 8000.
+In this guide I assume that both HTTP and Plutonium Servers are on the same machine, but that's not required.
+
+To easily start all the components and scripts I need at startup here's how I configured my crontab file:
+```shell
+#Dynamically updates the IP address for the HTTP Server
+@reboot sed -i "/set sv_wwwBaseURL/c\set sv_wwwBaseURL \"http://$(curl ifconfig.me):8000\"" "/home/ubuntu/T4Server/T4Gamefiles/main/dedicated_zm.cfg"
+
+#Start HTTP Server for FastDL
+@reboot (python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/) &
+
+#Start Plutonium Server
+@reboot (cd /home/ubuntu/T4Server/Plutonium && ./T4_zm_server.sh) &
+```
+
+The first command is only useful if your VM/OS changes its public IP address every time you turn it ON, for instance, AWS EC2 instances. 
+With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicated_zm.cfg` with my current public IP address. 
 
 ## Issues
 ### Wine display errors
