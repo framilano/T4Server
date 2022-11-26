@@ -39,7 +39,7 @@ These steps are necessary, but it allows the user to choose if they need them ri
 ## Configuration
 1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with already existing one.
 2. Move to `/T4Server/T4Gamefiles/main` Folder.
-3. Edit dedicated_zm.cfg or dedicated_mp.cfg according to your needs.
+3. Edit `dedicated_zm.cfg` or `dedicated_mp.cfg` according to your needs.
 4. Move to `/T4Server/Plutonium` Folder.
 5. Edit `T4_**_server.sh` with your informations. Specify Plutonium and T4Gamefiles directories with their full paths, type your Server Key.
 
