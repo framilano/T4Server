@@ -28,7 +28,7 @@ cd T4Server/
 ./install.sh
 ```
 You'll be asked to type your machine root password, follow the instructions and you can choose to install:
-- UFW firewall for port forwarding. You'll be asked to choose the port to open for this Server (and a specific name for it, eg. T4Server-0)
+- UFW firewall for port forwarding. You'll be asked to choose the port to open for this Server (and a specific name for it, eg. T4Server-0) and if you want to allow ftp traffic (port 21) for FastDL support on your Server
 - crossplatform [plutonium-updater](https://github.com/mxve/plutonium-updater.rs) by mxve.
 - Wine dependencies.
 
