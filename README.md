@@ -46,13 +46,13 @@ These steps are necessary, but it allows the user to choose if they need them ri
 sudo ./allow_port.sh
 ```
 You'll be asked to choose the Server port to open, by default `T4_**_server.sh` are set to use `28961`
-<center> <b>Configuration Complete</b> </center>
 
 ## Launch Server
 1. Move to `/T4Server/Plutonium` Folder.
 2. Launch Server. 
 ```shell
 ./T4_**_server.sh
+```
 
 It will update first your Plutonium files using `plutonium-updater`.
 
