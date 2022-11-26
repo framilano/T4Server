@@ -66,11 +66,10 @@ read -p '>>> ' firewall
 echo "Enter the port you want to allow for this specific server (Example: 28961)"
 read -p 'Port Number: ' port
 echo "Name of your port (Example: T4Server-0)"
-read -p 'Name: ' name
+read -p 'Name: ' rulename
 
-echo "Do you want to allow traffic on FTP port 21? (Useful to set-up FastDL if you need to host modded maps or mods)"
-echo "Name of your port (Example: T4Server-0)"
-read -p '>>> ' tcpcheck
+echo "Do you want to enable traffic on FTP port 21? (Useful to set-up FastDL if you need to host modded maps or mods)"
+read -p '>>> ' ftpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
@@ -92,13 +91,10 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     sudo ufw allow 22/tcp && \
     sudo ufw default allow outgoing && \
     sudo ufw default deny incoming && \
-    if [ "$tcpcheck" = 'y' ] || [ "$tcpcheck" = '' ] || [ "$tcpcheck" = 'Y' ] ; then
-        sudo ufw allow ftp && \
-    fi
     sudo ufw -f enable
     
     #Checking if the chosen server port is available
-    sudo ufw allow $port comment $name && \
+    sudo ufw allow $port comment $rulename && \
     if [ $? -eq 0 ]; then
         echo "The port $port has been opened"
         sudo ufw reload
@@ -113,6 +109,11 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
 
   } #> /dev/null 2>&1 &
   Spinner "${mfirewall2}"
+fi
+
+#Setup optional FTP Port
+if [ "$ftpcheck" = 'y' ] || [ "$ftpcheck" = '' ] || [ "$ftpcheck" = 'Y' ] ; then
+  sudo ufw allow ftp && \
 fi
 
 # Installing Wine
