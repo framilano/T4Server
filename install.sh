@@ -68,6 +68,10 @@ read -p 'Port Number: ' port
 echo "Name of your port (Example: T4Server-0)"
 read -p 'Name: ' name
 
+echo "Do you want to allow traffic on FTP port 21? (Useful to set-up FastDL if you need to host modded maps or mods)"
+echo "Name of your port (Example: T4Server-0)"
+read -p '>>> ' tcpcheck
+
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
 read -p '>>> ' updater
@@ -88,8 +92,12 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     sudo ufw allow 22/tcp && \
     sudo ufw default allow outgoing && \
     sudo ufw default deny incoming && \
+    if [ "$tcpcheck" = 'y' ] || [ "$tcpcheck" = '' ] || [ "$tcpcheck" = 'Y' ] ; then
+        sudo ufw allow ftp && \
+    fi
     sudo ufw -f enable
-
+    
+    #Checking if the chosen server port is available
     sudo ufw allow $port comment $name && \
     if [ $? -eq 0 ]; then
         echo "The port $port has been opened"
