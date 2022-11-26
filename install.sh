@@ -32,6 +32,8 @@ printf "${RED}
 
 
 
+
+
 d888888P dP   dP    .d88888b                                                  dP                     dP            dP dP                   
    88    88   88    88.    \"'                                                 88                     88            88 88                   
    88    88aaa88    \`Y88888b. .d8888b. 88d888b. dP   .dP .d8888b. 88d888b.    88 88d888b. .d8888b. d8888P .d8888b. 88 88 .d8888b. 88d888b. 
@@ -61,6 +63,11 @@ mfirewall='Do you want install UFW firewall (Y/n) ?'
 printf "${YELLOW}${mfirewall}${NC}\n"
 read -p '>>> ' firewall
 
+echo "Enter the port you want to allow for this specific server (Example: 28961)"
+read -p 'Port Number: ' port
+echo "Name of your port (Example: T4Server-0)"
+read -p 'Name: ' name
+
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
 read -p '>>> ' updater
@@ -82,6 +89,20 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     sudo ufw default allow outgoing && \
     sudo ufw default deny incoming && \
     sudo ufw -f enable
+
+    sudo ufw allow $port comment $name && \
+    if [ $? -eq 0 ]; then
+        echo "The port $port has been opened"
+        sudo ufw reload
+        if [ $? -eq 0 ]; then
+            echo "The firewall has reloaded"
+        else
+            echo "[Error] The firewall could not be reloaded"
+        fi
+    else
+        echo "[Error] The port could not be opened"
+    fi
+
   } #> /dev/null 2>&1 &
   Spinner "${mfirewall2}"
 fi
