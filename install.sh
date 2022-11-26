@@ -68,7 +68,7 @@ read -p 'Port Number: ' port
 echo "Name of your port (Example: T4Server-0)"
 read -p 'Name: ' rulename
 
-echo "Do you want to enable traffic on a HTTP port 8000? (Useful to set-up FastDL if you need to host modded maps or mods)"
+echo "Do you want to enable traffic on HTTP port 8080? (Useful to set-up FastDL if you need to host modded maps or mods)"
 read -p '>>> ' httpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
@@ -113,7 +113,7 @@ fi
 
 #Setup optional HTTP Port
 if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
-  sudo ufw allow 8000/tcp
+  sudo ufw allow 8080/tcp
 fi
 
 # Installing Wine
