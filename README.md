@@ -28,7 +28,7 @@ cd T4Server/
 ./install.sh
 ```
 You'll be asked to type your machine root password, follow the instructions and you can choose to install:
-- UFW firewall for port forwarding.
+- UFW firewall for port forwarding. You'll be asked to choose the port to open for this Server (and a specific name for it, eg. T4Server-0)
 - crossplatform [plutonium-updater](https://github.com/mxve/plutonium-updater.rs) by mxve.
 - Wine dependencies.
 
@@ -42,12 +42,6 @@ These steps are necessary, but it allows the user to choose if they need them ri
 3. Edit `dedicated_zm.cfg` or `dedicated_mp.cfg` according to your needs.
 4. Move to `/T4Server/Plutonium` Folder.
 5. Edit `T4_**_server.sh` with your informations. Specify Plutonium and T4Gamefiles directories with their full paths, type your Server Key.
-
-3. Allow server port. Move to `/T4Server/Scripts/` and the run `allow_port.sh`
-```shell
-sudo ./allow_port.sh
-```
-You'll be asked to choose the Server port to open, by default `T4_**_server.sh` are set to use `28961`
 
 ## Launch Server
 1. Move to `/T4Server/Plutonium` Folder.
