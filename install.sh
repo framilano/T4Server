@@ -63,12 +63,10 @@ mfirewall='Do you want install UFW firewall to allow traffic on this server? (Y/
 printf "${YELLOW}${mfirewall}${NC}\n"
 read -p '>>> ' firewall
 
-echo "Enter the port you want to allow for this specific server (Example: 28961)"
+echo "Enter the port you want to allow for this specific server (0 if you don't want to set this)"
 read -p 'Port Number: ' port
-echo "Name of your port (Example: T4Server-0)"
-read -p 'Name: ' rulename
 
-echo "Do you want to enable traffic on HTTP port 8080? (Useful to set-up FastDL if you need to host modded maps or mods)"
+echo "Do you want to enable traffic on HTTP port 8000? (0 if you don't want to set this, setting it it's useful to set-up FastDL if you need to host modded maps or mods)"
 read -p '>>> ' httpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
@@ -94,26 +92,42 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     sudo ufw -f enable
     
     #Checking if the chosen server port is available
-    sudo ufw allow $port comment $rulename && \
-    if [ $? -eq 0 ]; then
-        echo "The port $port has been opened"
-        sudo ufw reload
-        if [ $? -eq 0 ]; then
-            echo "The firewall has reloaded"
-        else
-            echo "[Error] The firewall could not be reloaded"
-        fi
+    if [ $port -eq 0 ]; then
+      echo "Skipping server port configuration..."
     else
-        echo "[Error] The port could not be opened"
-    fi
+      sudo ufw allow $port && \
+      if [ $? -eq 0 ]; then
+          echo "The port $port has been opened"
+          sudo ufw reload
+          if [ $? -eq 0 ]; then
+              echo "The firewall has reloaded"
+          else
+              echo "[Error] The firewall could not be reloaded"
+          fi
+      else
+          echo "[Error] The port could not be opened"
+      fi
+    
+    #Checking if the chosen http port is available
+    if [ $httpcheck -eq 0 ]; then
+      echo "Skipping HTTP port configuration..."
+    else
+      sudo ufw allow 8000/tcp && \
+      if [ $? -eq 0 ]; then
+          echo "The port 8000/tcp has been opened"
+          sudo ufw reload
+          if [ $? -eq 0 ]; then
+              echo "The firewall has reloaded"
+          else
+              echo "[Error] The firewall could not be reloaded"
+          fi
+      else
+          echo "[Error] The port could not be opened"
+      fi
+    
 
   } #> /dev/null 2>&1 &
   Spinner "${mfirewall2}"
-fi
-
-#Setup optional HTTP Port
-if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
-  sudo ufw allow 8080/tcp
 fi
 
 # Installing Wine

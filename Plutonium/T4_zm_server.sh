@@ -1,8 +1,5 @@
 #!/bin/bash
 ## Variable Region
-_script="$(readlink -f ${BASH_SOURCE[0]})" 
-# Delete last component from $_script
-_mydir="$(dirname $_script)"
 # Name of the server shown in the title of the terminal window
 NAME="T4 Zombies 1"
 # Your Game Path (where there is binkw32.dll)
@@ -15,13 +12,13 @@ CFG=dedicated_zm.cfg
 PORT=28961
 # Game Mode ( Multiplayer / Zombie ) -> ( t4mp / t4sp )
 MODE=t4sp
-# Mod name (default "")
+# Mod name (default "", (eg. "mods/nazi_zombie_ragnarok"))
 MOD=""
+# Plutonium game dir, inside this repository
+INSTALLDIR="full_path_to_this_script_dir"
 ## End Region
 
 ## Update Region
-# Plutonium game dir, inside this repository
-INSTALLDIR="full_path_to_this_script_dir"
 # Update your server game file
 ./plutonium-updater -d "$INSTALLDIR"
 ## End Region
