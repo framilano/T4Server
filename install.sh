@@ -59,7 +59,7 @@ sudo apt update && sudo apt upgrade -y
 sleep 3
 
 # Choices Section
-mfirewall='Do you want install UFW firewall (Y/n) ?'
+mfirewall='Do you want install UFW firewall and setup server access ports? (Y/n) ?'
 printf "${YELLOW}${mfirewall}${NC}\n"
 read -p '>>> ' firewall
 
