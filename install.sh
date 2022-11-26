@@ -113,7 +113,7 @@ fi
 
 #Setup optional HTTP Port
 if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
-  sudo ufw allow 8000/tcp && \
+  sudo ufw allow 8000/tcp
 fi
 
 # Installing Wine
