@@ -65,17 +65,10 @@ mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
 read -p '>>> ' updater
 
-mtorrent='Do you need to download T4 game files (Y/n) ?'
-printf "${YELLOW}${mtorrent}${NC}\n"
-read -p '>>> ' torrent
-
 mwine='Do you need to install wine dependecies? (Y/n) ?'
 printf "${YELLOW}${mwine}${NC}\n"
 read -p '>>> ' winecheck
 
-mdotnet='Do you want install Dotnet [Required for IW4Madmin] (Y/n) ?'
-printf "${YELLOW}${mdotnet}${NC}\n"
-read -p '>>> ' dotnet
 stty igncr
 
 clear
@@ -89,22 +82,19 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     sudo ufw default allow outgoing && \
     sudo ufw default deny incoming && \
     sudo ufw -f enable
-  } > /dev/null 2>&1 &
+  } #> /dev/null 2>&1 &
   Spinner "${mfirewall2}"
 fi
-
-# Enable 32 bit packages
-mbit='Enabling 32-bit packages'
-{
-  sudo dpkg --add-architecture i386 && \
-  sudo apt-get install wget gnupg2 software-properties-common apt-transport-https curl transmission-cli -y
-} > /dev/null 2>&1 &
-Spinner "${mbit}"
 
 # Installing Wine
 if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
   mwine2='Installing Wine'
   {
+    #Enabling 32bit packages
+    sudo dpkg --add-architecture i386 && \
+    sudo apt-get install wget gnupg2 software-properties-common apt-transport-https curl -y
+    
+    #Installing wine
     wget -nc https://dl.winehq.org/wine-builds/winehq.key
     sudo apt-key add winehq.key
     sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' -y
@@ -118,28 +108,8 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
     echo -e 'export DISPLAY=:0' >> ~/.bashrc
     source ~/.bashrc
     winecfg
-  } > /dev/null 2>&1 &
-  Spinner "${mwine2}"
-fi
-
-# Dotnet Installation
-if [ $dotnet == 'y' ] || [ $dotnet == '' ] || [ $dotnet == 'Y' ] ; then
-  mdotnet2='Installing Dotnet'
-  {
-    #Dotnet Package
-    wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    sudo dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
-
-    #Install the SDK
-    apt-get install -y dotnet-sdk-3.1
-    apt-get install -y dotnet-sdk-6.0
-
-    #Install the runtime
-    apt-get install -y aspnetcore-runtime-3.1
-	  apt-get install -y aspnetcore-runtime-6.0
   } #> /dev/null 2>&1 &
-  Spinner "${mdotnet2}"
+  Spinner "${mwine2}"
 fi
 
 if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
@@ -157,28 +127,8 @@ if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
       sudo chmod +x T4_mp_server.sh
       sudo chmod +x T4_zm_server.sh
 
-  } > /dev/null 2>&1 &
-  Spinner "${mupdater2}"
-fi
-
-
-if [ "$torrent" = 'y' ] || [ "$torrent" = '' ] || [ "$torrent" = 'Y' ] ; then
-  mbinary='Game Binary Installation (wait for torrent to end).'
-  {      
-      # Download Game File
-      cd ..
-      wget https://plutonium.pw/pluto_t4_full_game.torrent
-      tmpfile=$(mktemp)
-      chmod a+x $tmpfile
-      echo "killall transmission-cli" > $tmpfile
-      transmission-cli --download-dir ./ pluto_t4_full_game.torrent
-
-      # Clean Installation
-      rm pluto_t4_full_game.torrent
-      cp -r pluto_t4_full_game/* T4Gamefiles/
-      rm -rf pluto_t4_full_game
   } #> /dev/null 2>&1 &
-  Spinner "${mbinary}"
+  Spinner "${mupdater2}"
 fi
 
 mfinish='Installation finished.'
