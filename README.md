@@ -76,6 +76,6 @@ It will update first your Plutonium files using `plutonium-updater`.
    + Check if your plutonium key are correctly write in T6Server.sh
 
 ## Source
-• **Plutonium:** https://plutonium.pw <br>
-• **Minami original topic** https://forum.plutonium.pw/topic/23683/guide-debian-t5-server-on-linux-vps-dedicated-server <br>
-• **Plutonium-Updater by mxbe:** https://github.com/mxve/plutonium-updater.rs <br>
+• [Plutonium](https://plutonium.pw) <br>
+• [Minami original topic](https://forum.plutonium.pw/topic/23683/guide-debian-t5-server-on-linux-vps-dedicated-server) <br>
+• [Plutonium-Updater by mxve](https://github.com/mxve/plutonium-updater.rs)
