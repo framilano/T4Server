@@ -4,7 +4,7 @@
 
 
 # T4 Server Installer for Linux
-Simple installation and configuration of a T4 server on linux. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`.
+Simple installation and configuration of a T4 server on linux. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
 
 Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
@@ -32,7 +32,9 @@ You'll be asked to type your machine root password, follow the instructions and 
 - crossplatform [plutonium-updater](https://github.com/mxve/plutonium-updater.rs) by mxve.
 - Wine dependencies.
 
-These steps are necessary, but it allows the user to choose if they need them right now or they can provide their own versions (like using Wine Stable instead of Wine Staging)
+These steps are necessary, but it allows the user to choose if they need them right now or they can provide their own versions (like using Wine Stable instead of Wine Staging).
+
+### I highly suggest to restart your VM/Container/OS after completing the installation, just to be sure that every env variable has been set correctly.
 
 ## Configuration
 1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with already existing one.
