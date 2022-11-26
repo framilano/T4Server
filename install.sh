@@ -157,7 +157,7 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
 fi
 
 if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
-  mupdater2='Installing plutonium-updater'
+  mupdater2='Downloading plutonium-updater by mxve'
   {
       # Download plutonium-updater
       cd Plutonium/
@@ -171,7 +171,7 @@ if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
       sudo chmod +x T4_mp_server.sh
       sudo chmod +x T4_zm_server.sh
 
-  } #> /dev/null 2>&1 &
+  } > /dev/null 2>&1 &
   Spinner "${mupdater2}"
 fi
 
