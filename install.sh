@@ -112,8 +112,6 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     
     #Checking if the chosen http port is available
     if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
-      echo "Skipping HTTP port configuration..."
-    else
       sudo ufw allow 8000/tcp && \
       if [ $? -eq 0 ]; then
           echo "The port 8000/tcp has been opened"
@@ -126,6 +124,8 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
       else
           echo "[Error] The port could not be opened"
       fi
+    else
+      echo "Skipping HTTP port configuration..."
     fi
     
 
