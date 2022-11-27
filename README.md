@@ -83,7 +83,7 @@ With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicate
 
 ## Usage Report
 - Removing the unnecessary game files, with default maps and a single custom map on a *AWS EC2 t3a.micro Ubuntu instance*, the occupied storage is around **9GB**.
-- While the Server is running, the HTTP Server is working for FastDL and one player is player a match, the average memory consumption is **620MB**.
+- While the Server is running, the HTTP Server is working for FastDL and one player has joined the lobby, the average memory consumption is **620MB**.
 
 ## Issues
 ### Wine display errors
