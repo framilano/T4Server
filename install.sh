@@ -79,7 +79,7 @@ printf "${YELLOW}${mwine}${NC}\n"
 read -p '>>> ' winecheck
 
 miw4admin='Do you need to install IW4MAdmin dependencies? (Y/n) ?'
-printf "${YELLOW}${iw4admin}${NC}\n"
+printf "${YELLOW}${miw4admin}${NC}\n"
 read -p '>>> ' iw4admin
 
 stty igncr
@@ -188,7 +188,7 @@ if [ "$iw4admin" = 'y' ] || [ "$iw4admin" = '' ] || [ "$iw4admin" = 'Y' ] ; then
     sudo apt-get update && \
     sudo apt-get install -y aspnetcore-runtime-6.0
   } > /dev/null 2>&1 &
-  Spinner "${mupdater2}"
+  Spinner "${miw4admin2}"
 fi
 
 mfinish='Installation finished.'
