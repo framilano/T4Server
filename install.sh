@@ -78,6 +78,10 @@ mwine='Do you need to install wine dependencies? (Y/n) ?'
 printf "${YELLOW}${mwine}${NC}\n"
 read -p '>>> ' winecheck
 
+miw4admin='Do you need to install IW4MAdmin dependencies? (Y/n) ?'
+printf "${YELLOW}${iw4admin}${NC}\n"
+read -p '>>> ' iw4admin
+
 stty igncr
 
 clear
@@ -174,6 +178,15 @@ if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
       sudo chmod +x T4_mp_server.sh
       sudo chmod +x T4_zm_server.sh
 
+  } > /dev/null 2>&1 &
+  Spinner "${mupdater2}"
+fi
+
+if [ "$iw4admin" = 'y' ] || [ "$iw4admin" = '' ] || [ "$iw4admin" = 'Y' ] ; then
+  miw4admin2='Downloading IW4MAdmin dependencies'
+  {
+    sudo apt-get update && \
+    sudo apt-get install -y aspnetcore-runtime-6.0
   } > /dev/null 2>&1 &
   Spinner "${mupdater2}"
 fi
