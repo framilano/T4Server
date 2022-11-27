@@ -66,14 +66,14 @@ read -p '>>> ' firewall
 echo "Enter the port you want to allow for this specific server (0 if you don't want to set this)"
 read -p 'Port Number: ' port
 
-echo "Do you want to enable traffic on HTTP port 8000? (0 if you don't want to set this, setting it it's useful to set-up FastDL if you need to host modded maps or mods)"
+echo "Do you want to enable traffic on HTTP port 8000? (Y/n)\n(This setting it's only useful to set-up FastDL if you need to host modded maps or mods)"
 read -p '>>> ' httpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
 printf "${YELLOW}${mupdater}${NC}\n"
 read -p '>>> ' updater
 
-mwine='Do you need to install wine dependecies? (Y/n) ?'
+mwine='Do you need to install wine dependencies? (Y/n) ?'
 printf "${YELLOW}${mwine}${NC}\n"
 read -p '>>> ' winecheck
 
@@ -107,9 +107,10 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
       else
           echo "[Error] The port could not be opened"
       fi
+    fi
     
     #Checking if the chosen http port is available
-    if [ $httpcheck -eq 0 ]; then
+    if [ "$httpcheck" = 'y' ] || [ "$httpcheck" = '' ] || [ "$httpcheck" = 'Y' ] ; then
       echo "Skipping HTTP port configuration..."
     else
       sudo ufw allow 8000/tcp && \
@@ -124,6 +125,7 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
       else
           echo "[Error] The port could not be opened"
       fi
+    fi
     
 
   } #> /dev/null 2>&1 &
