@@ -7,7 +7,7 @@
 Simple installation and configuration of a T4 server on linux. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
 Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
-# Synopsis
+## Synopsis
 In this guide we'll cover the following topics:
 - Scripts usage, `install.sh` and `T4_**_server.sh`. The first one starts the configuration process (dependencies and firewall ports set-up), the second one starts the actual server using Wine.
 - Manual variables changing, depending on your needs (ports, IPs, folders).
@@ -81,15 +81,19 @@ To easily start all the components and scripts I need at startup here's how I co
 The first command is only useful if your VM/OS changes its public IP address every time you turn it ON, for instance, AWS EC2 instances. 
 With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicated_zm.cfg` with my current public IP address. 
 
+## Usage Report
+Removing the unnecessary game files, with default maps and a single custom map, the occupied storage is around 9GB.
+While the Server is running, the HTTP Server is working for FastDL and one player is player a match, the average memory consumption is 620MB.
+
 ## Issues
 ### Wine display errors
-   + Don't care of these errors, plutonium server doesn't have graphic support.
+   + You shouldn't care about these errors, Plutonium servers don't have any graphical support.
 
 ### Unable to load import '_BinkWaitStopAsyncThread@4' from module 'binkw32.dll'
    + Check your PAT variable in `T4_**_server.sh`. (It will be ping binkw32.dll dir)
    + Make sure to your user can read the file in all sub-dir of T4Server.
 
-### Server don't appear in Plutonium Servers List
+### Server doesn't appear in Plutonium Servers List
    + Check if your server port is open with UDP protocol. (Example: 28961)
 
 ### Connection with nix socket lost
@@ -98,7 +102,7 @@ With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicate
 
 ### [DW][Auth] Handling authentication request
    + Check your plutonium key validity
-   + Check if your plutonium key are correctly write in T6Server.sh
+   + Check if your plutonium key are correctly write in T4_**_server.sh
 
 ## Source
 • [Plutonium](https://plutonium.pw) <br>
