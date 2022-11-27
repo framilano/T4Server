@@ -66,7 +66,8 @@ read -p '>>> ' firewall
 echo "Enter the port you want to allow for this specific server (0 if you don't want to set this)"
 read -p 'Port Number: ' port
 
-echo "Do you want to enable traffic on HTTP port 8000? (Y/n)\n(This setting it's only useful to set-up FastDL if you need to host modded maps or mods)"
+echo "Do you want to enable traffic on HTTP port 8000? (Y/n)"
+echo "(This setting it's only useful to set-up FastDL if you need to host modded maps or mods)"
 read -p '>>> ' httpcheck
 
 mupdater='Do you need to download the plutonium-updater? (Y/n) ?'
