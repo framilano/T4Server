@@ -76,10 +76,14 @@ To easily start all the components and scripts I need at startup here's how I co
 
 #Start Plutonium Server
 @reboot (cd /home/ubuntu/T4Server/Plutonium && ./T4_zm_server.sh) &
+
+#Start IW4MAdmin
+@reboot ((sleep 60) && (cd /home/ubuntu/IW4MAdmin && ./StartIW4MAdmin.sh)) &
 ```
 
 The first command is only useful if your VM/OS changes its public IP address every time you turn it ON, for instance, AWS EC2 instances. 
-With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicated_zm.cfg` with my current public IP address. 
+With the `sed` utility I replace the `set sv_wwwBaseURL` line value in `dedicated_zm.cfg` with my current public IP address.
+The fourth command just starts [IW4MAdmin](https://github.com/RaidMax/IW4M-Admin).
 
 ## Usage Report
 - Removing the unnecessary game files, with default maps and a single custom map on a *AWS EC2 t3a.micro Ubuntu instance*, the occupied storage is around **9GB**.
