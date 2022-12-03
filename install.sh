@@ -142,16 +142,16 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
   mwine2='Installing Wine'
   {
     #Enabling 32bit packages
-    sudo dpkg --add-architecture i386 && \
+    sudo dpkg --add-architecture i386
     sudo apt-get install wget gnupg2 software-properties-common apt-transport-https curl -y
     
     #Installing wine
-    wget -nc https://dl.winehq.org/wine-builds/winehq.key
-    sudo apt-key add winehq.key
-    sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/' -y
-    rm winehq.key
+    sudo mkdir -pm755 /etc/apt/keyrings
+    sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+    sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+    
     sudo apt update -y
-    sudo apt install --install-recommends winehq-staging -y
+    sudo apt install --install-recommends winehq-staging
     sudo apt install winetricks -y
 
     # Add Variables to the environment at the end of ~/.bashrc
