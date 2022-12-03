@@ -151,7 +151,7 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
     sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
     
     sudo apt update -y
-    sudo apt install --install-recommends winehq-staging
+    sudo apt install --install-recommends winehq-staging -y
     sudo apt install winetricks -y
 
     # Add Variables to the environment at the end of ~/.bashrc
