@@ -1,15 +1,15 @@
 
 
-<img src="https://pbs.twimg.com/profile_images/993278064883851265/QrvMbLC7_400x400.jpg" alt="plutonium" width="75"/> <img src="https://user-images.githubusercontent.com/28491164/204064220-d6c47ae9-ef1e-4a17-9b62-f084dc386416.png" alt="ubuntu" width="75"/> <img src="https://i.imgur.com/ylf2Uzh.png" alt="ubuntu" width="200"/> 
+<img src="https://pbs.twimg.com/profile_images/993278064883851265/QrvMbLC7_400x400.jpg" alt="plutonium" width="75"/> <img src="https://user-images.githubusercontent.com/28491164/204064220-d6c47ae9-ef1e-4a17-9b62-f084dc386416.png" alt="ubuntu" width="75"/> 
 
+# Server Installer for Linux
 
-# T4 Server Installer for Linux
-Simple installation and configuration of a T4 server on linux. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
+Simple installation and configuration of a T4/T5 server on linux, this repo only provides instructions for T4/T5, but it's easily adjustable for T6 and other Plutonium supported games. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
 Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
 ## Synopsis
 In this guide we'll cover the following topics:
-- Scripts usage, `install.sh` and `T4_**_server.sh`. The first one starts the configuration process (dependencies and firewall ports set-up), the second one starts the actual server using Wine.
+- Scripts usage, `install.sh` and `T4/5_**_server.sh`. The first one starts the configuration process (dependencies and firewall ports set-up), the second one starts the actual server using Wine.
 - Manual variables changing, depending on your needs (ports, IPs, folders).
 - Setting up FastDL for easier custom maps support on your server
 
@@ -17,14 +17,17 @@ In this guide we'll cover the following topics:
 + Ubuntu >22.04
 + 10GB dedicated for this server.
 + Root permissions.
-+ T4-WaW gamefiles, you can easily find them on your own. [I highly recommend removing unnecessary game files](https://plutonium.pw/docs/server/t4/setting-up-a-server/#4-optional-slimming-down-server-directory)
++ T4-WaW/T5-BO1 gamefiles, you can easily find them on your own. 
+
+[I highly recommend removing unnecessary game files on T4](https://plutonium.pw/docs/server/t4/setting-up-a-server/#4-optional-slimming-down-server-directory)
+[I highly recommend removing unnecessary game files on T5](https://plutonium.pw/docs/server/t5/setting-up-a-server/#4-optional-slimming-down-server-directory)
 
 ## Instructions
 1. Clone the repository wherever you need to: 
 ```shell 
 git clone https://github.com/framilano/T4Server.git
 ```
-2. Move to `T4Server` folder.
+2. Move to `PlutoniumLinuxServer` folder.
 ```shell
 cd T4Server/
 ```
@@ -43,6 +46,7 @@ These steps are necessary, but it allows the user to choose if they need them du
 ### I highly suggest to restart your VM/Container/OS after completing the installation, just to be sure that every env variable has been set correctly.
 
 ## Configuration
+*Assuming you're configuring a T4 Server*
 1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with the already existing one.
 2. Move to `/T4Server/T4Gamefiles/main` Folder.
 3. Edit `dedicated_zm.cfg` or `dedicated_mp.cfg` according to your needs (change map rotation, [enable FastDL](https://plutonium.pw/docs/server/t4/fastdl/)).
