@@ -19,6 +19,7 @@ In this guide we'll cover the following topics:
 + T4-WaW/T5-BO1 gamefiles, you can easily find them on your own. 
 
 [I highly recommend removing unnecessary game files on T4](https://plutonium.pw/docs/server/t4/setting-up-a-server/#4-optional-slimming-down-server-directory)
+
 [I highly recommend removing unnecessary game files on T5](https://plutonium.pw/docs/server/t5/setting-up-a-server/#4-optional-slimming-down-server-directory)
 
 ## Instructions
