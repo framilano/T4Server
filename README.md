@@ -4,7 +4,7 @@
 
 # Server Installer for Linux
 
-Simple installation and configuration of a T4/T5 server on Unix based OSes, this repo only provides instructions for T4/T5, but it's easily adjustable for T6 and other Plutonium supported games. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
+Simple installation and configuration of a T4/T5 server on Unix-like OSs with Wine support, this repo only provides instructions for T4/T5, but it's easily adjustable for T6 and other Plutonium supported games. This installer assumes you're using Ubuntu, but you can use it with every distro changing the dependencies links in `install.sh`. I actually use this on a Ubuntu AWS EC2 instance.
 Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
 ## Synopsis
@@ -14,8 +14,7 @@ In this guide we'll cover the following topics:
 - Setting up FastDL for easier custom maps support on your server
 
 ## Requirements
-+ Ubuntu >22.04
-+ 10GB dedicated for this server.
++ ~10GB dedicated for this server.
 + Root permissions.
 + T4-WaW/T5-BO1 gamefiles, you can easily find them on your own. 
 
