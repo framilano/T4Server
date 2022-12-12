@@ -4,7 +4,7 @@
 
 # Server Installer for Linux
 
-Simple installation and configuration of a T4/T5 server on linux, this repo only provides instructions for T4/T5, but it's easily adjustable for T6 and other Plutonium supported games. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
+Simple installation and configuration of a T4/T5 server on Unix based OSes, this repo only provides instructions for T4/T5, but it's easily adjustable for T6 and other Plutonium supported games. This installer assumes you're using Ubuntu, but you can easily use it with every distro, you just need to change the dependencies links in `install.sh`. I actually use this on an Amazon AWS EC2 instance.
 Forked and based on [T5Server](https://github.com/Sterbweise/T5Server)
 
 ## Synopsis
