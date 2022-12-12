@@ -29,10 +29,6 @@ printf "\r [${GREEN}\xE2\x9C\x94${NC}] $1 \n"
 logo(){
 printf "${RED}
 
-
-
-
-
  888888ba  dP            dP                     oo                        dP        oo                               dP     dP                      dP   oo                   
  88     8b 88            88                                               88                                         88     88                      88                        
  a88aaaa8P 88 dP    dP d8888P .d8888b. 88d888b. dP dP    dP 88d8b.d8b.    88        dP 88d888b. dP    dP dP.  .dP    88aaaaa88a .d8888b. .d8888b. d8888P dP 88d888b. .d8888b. 
@@ -40,13 +36,8 @@ printf "${RED}
  88        88 88.  .88   88   88.  .88 88    88 88 88.  .88 88  88  88    88        88 88    88 88.  .88  .d88b.     88     88  88.  .88       88   88   88 88    88 88.  .88 
  dP        dP  88888P    dP    88888P  dP    dP dP  88888P  dP  dP  dP    88888888P dP dP    dP  88888P  dP    dP    dP     dP   88888P'  88888P'   dP   dP dP    dP  8888P88 
                                                                                                                                                                           .88 
-                                                                                                                                                                      d8888P  
-
-
-                                                                                                                                           
-                                                                                                                                           
-                                                                                           
-                                                                                           
+                                                                                                                                                                      d8888P
+                                                                                                                                                                                                                                                                                                                                          
  ${NC}                                                                                        
 ╔══════════════════════════════╗
 ║         Made by ${BLUE}fra98_${NC}       ║
@@ -136,7 +127,7 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     fi
     
 
-  } #> /dev/null 2>&1 &
+  } > /dev/null 2>&1 &
   Spinner "${mfirewall2}"
 fi
 
@@ -162,7 +153,7 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
     echo -e 'export DISPLAY=:0' >> ~/.bashrc
     source ~/.bashrc
     winecfg
-  } #> /dev/null 2>&1 &
+  } > /dev/null 2>&1 &
   Spinner "${mwine2}"
 fi
 
