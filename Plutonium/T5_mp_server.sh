@@ -1,17 +1,17 @@
 #!/bin/bash
 ## Variable Region
 # Name of the server shown in the title of the terminal window
-NAME="T4 Multiplayer 1"
+NAME="T5 Multiplayer 1"
 # Your Game Path (where there is binkw32.dll)
-PAT="path_to_T4Gamefiles"
+PAT="path_to_T5Gamefiles"
 # Paste the server key from https://platform.plutonium.pw/serverkeys
 KEY="your_server_key_goes_here"
 # Name of the config file the server should use. (default: dedicated_sp.cfg)
 CFG=dedicated_mp.cfg
 # Port used by the server (default: 28960) -> Don't forget to allow server port in ufw fail2ban
 PORT=28961
-# Game Mode ( Multiplayer / Zombie ) -> ( t4mp / t4sp )
-MODE=t4mp
+# Game Mode ( Multiplayer / Zombie ) -> ( t5mp / t5sp )
+MODE=t5mp
 # Mod name (default "", (eg. "mods/nazi_zombie_ragnarok"))
 MOD=""
 # Plutonium game dir, inside this repository
@@ -33,7 +33,7 @@ echo ""$NOW" $NAME server started."
 
 while true
 do
-wine .\\bin\\plutonium-bootstrapper-win32.exe $MODE $PAT -dedicated +set key $KEY +set fs_game $MOD +exec $CFG +set net_port $PORT +map_rotate
+wine .\\bin\\plutonium-bootstrapper-win32.exe $MODE $PAT -dedicated +start_map_rotate +set key $KEY +set fs_game $MOD +set net_port $PORT +set sv_config $CFG
 printf -v NOW '%(%F_%H:%M:%S)T' -1
 echo ""$NOW" WARNING: $NAME server closed or dropped... server restarting."
 sleep 1

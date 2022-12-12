@@ -25,11 +25,11 @@ In this guide we'll cover the following topics:
 ## Instructions
 1. Clone the repository wherever you need to: 
 ```shell 
-git clone https://github.com/framilano/T4Server.git
+git clone https://github.com/framilano/ PlutoniumLinuxHosting.git
 ```
 2. Move to `PlutoniumLinuxHosting` folder.
 ```shell
-cd T4Server/
+cd  PlutoniumLinuxHosting/
 ```
 3. Run the Installation Script `install.sh` .
 ```shell
@@ -47,10 +47,10 @@ These steps are necessary, but it allows the user to choose if they need them du
 
 ## Configuration
 *Assuming you're configuring a T4 Server*
-1. Copy your game files in `/T4Server/T4Gamefiles`, if asked merge the `main` folder with the already existing one.
-2. Move to `/T4Server/T4Gamefiles/main` Folder.
+1. Copy your game files in `/ PlutoniumLinuxHosting/T4Gamefiles`, if asked merge the `main` folder with the already existing one.
+2. Move to `/ PlutoniumLinuxHosting/T4Gamefiles/main` Folder.
 3. Edit `dedicated_zm.cfg` or `dedicated_mp.cfg` according to your needs (change map rotation, [enable FastDL](https://plutonium.pw/docs/server/t4/fastdl/)).
-4. Move to `/T4Server/Plutonium` Folder.
+4. Move to `/ PlutoniumLinuxHosting/Plutonium` Folder.
 5. Edit `T4_**_server.sh` with your informations. Specify `/Plutonium` and `/T4Gamefiles` directories with their full paths, type your Server Key.
 
 ## Launch Server
@@ -65,21 +65,21 @@ It will update first your Plutonium files using `plutonium-updater`.
 ### [Optional] FastDL support 
 For FastDL to work you need an HTTP Server serving your mods files. You can easily set up an http server with a single python module line:
 ```shell
-python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/
+python3 -m http.server --directory /home/ubuntu/ PlutoniumLinuxHosting/Plutonium/storage/t4/
 ```
-We're setting the HTTP Server to only serve files in `/home/ubuntu/T4Server/Plutonium/storage/t4/` you should type here the path to your `mods` directory, the default port is 8000.
+We're setting the HTTP Server to only serve files in `/home/ubuntu/ PlutoniumLinuxHosting/Plutonium/storage/t4/` you should type here the path to your `mods` directory, the default port is 8000.
 In this guide I assume that both HTTP and Plutonium Servers are on the same machine, but that's not required.
 
 To easily start all the components and scripts I need at startup here's how I configured my crontab file:
 ```shell
 #Dynamically updates the IP address for the HTTP Server
-@reboot sed -i "/set sv_wwwBaseURL/c\set sv_wwwBaseURL \"http://$(curl ifconfig.me):8000\"" "/home/ubuntu/T4Server/T4Gamefiles/main/dedicated_zm.cfg"
+@reboot sed -i "/set sv_wwwBaseURL/c\set sv_wwwBaseURL \"http://$(curl ifconfig.me):8000\"" "/home/ubuntu/ PlutoniumLinuxHosting/T4Gamefiles/main/dedicated_zm.cfg"
 
 #Start HTTP Server for FastDL
-@reboot (python3 -m http.server --directory /home/ubuntu/T4Server/Plutonium/storage/t4/) &
+@reboot (python3 -m http.server --directory /home/ubuntu/ PlutoniumLinuxHosting/Plutonium/storage/t4/) &
 
 #Start Plutonium Server
-@reboot (cd /home/ubuntu/T4Server/Plutonium && ./T4_zm_server.sh) &
+@reboot (cd /home/ubuntu/ PlutoniumLinuxHosting/Plutonium && ./T4_zm_server.sh) &
 
 #Start IW4MAdmin
 @reboot ((sleep 60) && (cd /home/ubuntu/IW4MAdmin && ./StartIW4MAdmin.sh)) &
@@ -99,7 +99,7 @@ The fourth command just starts [IW4MAdmin](https://github.com/RaidMax/IW4M-Admin
 
 ### Unable to load import '_BinkWaitStopAsyncThread@4' from module 'binkw32.dll'
    + Check your PAT variable in `T4_**_server.sh`. (It will be ping binkw32.dll dir)
-   + Make sure to your user can read the file in all sub-dir of T4Server.
+   + Make sure to your user can read the file in all sub-dir of  PlutoniumLinuxHosting.
 
 ### Server doesn't appear in Plutonium Servers List
    + Check if your server port is open with UDP protocol. (Example: 28961)

@@ -33,13 +33,16 @@ printf "${RED}
 
 
 
+ 888888ba  dP            dP                     oo                        dP        oo                               dP     dP                      dP   oo                   
+ 88     8b 88            88                                               88                                         88     88                      88                        
+ a88aaaa8P 88 dP    dP d8888P .d8888b. 88d888b. dP dP    dP 88d8b.d8b.    88        dP 88d888b. dP    dP dP.  .dP    88aaaaa88a .d8888b. .d8888b. d8888P dP 88d888b. .d8888b. 
+ 88        88 88    88   88   88'   88 88    88 88 88    88 88' 88' 88    88        88 88'   88 88    88   8bd8      88     88  88'   88 Y8ooooo.   88   88 88'   88 88'   88 
+ 88        88 88.  .88   88   88.  .88 88    88 88 88.  .88 88  88  88    88        88 88    88 88.  .88  .d88b.     88     88  88.  .88       88   88   88 88    88 88.  .88 
+ dP        dP  88888P    dP    88888P  dP    dP dP  88888P  dP  dP  dP    88888888P dP dP    dP  88888P  dP    dP    dP     dP   88888P'  88888P'   dP   dP dP    dP  8888P88 
+                                                                                                                                                                          .88 
+                                                                                                                                                                      d8888P  
 
-d888888P dP   dP    .d88888b                                                  dP                     dP            dP dP                   
-   88    88   88    88.    \"'                                                 88                     88            88 88                   
-   88    88aaa88    \`Y88888b. .d8888b. 88d888b. dP   .dP .d8888b. 88d888b.    88 88d888b. .d8888b. d8888P .d8888b. 88 88 .d8888b. 88d888b. 
-   88         88          \`8b 88ooood8 88'  \`88 88   d8\' 88ooood8 88\'  \`88    88 88\'  \`88 Y8ooooo.   88   88\'  \`88 88 88 88ooood8 88'  \`88 
-   88         88    d8\'   .8P 88.  ... 88       88 .88\'  88.  ... 88          88 88    88       88   88   88.  .88 88 88 88.  ... 88       
-   dP         dP     Y88888P  \`88888P\' dP       8888P\'   \`88888P\' dP          dP dP    dP \`88888P\'   dP   \`88888P8 dP dP \`88888P\' dP       
+
                                                                                                                                            
                                                                                                                                            
                                                                                            
@@ -174,9 +177,10 @@ if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
       sudo chmod +x plutonium-updater
 
       # Make executable script
-      #chmod +x Plutonium/T4Server.sh
       sudo chmod +x T4_mp_server.sh
       sudo chmod +x T4_zm_server.sh
+      sudo chmod +x T5_mp_server.sh
+      sudo chmod +x T5_zm_server.sh
 
   } > /dev/null 2>&1 &
   Spinner "${mupdater2}"
