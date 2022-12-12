@@ -27,7 +27,7 @@ In this guide we'll cover the following topics:
 ```shell 
 git clone https://github.com/framilano/T4Server.git
 ```
-2. Move to `PlutoniumLinuxServer` folder.
+2. Move to `PlutoniumLinuxHosting` folder.
 ```shell
 cd T4Server/
 ```
@@ -54,7 +54,7 @@ These steps are necessary, but it allows the user to choose if they need them du
 5. Edit `T4_**_server.sh` with your informations. Specify `/Plutonium` and `/T4Gamefiles` directories with their full paths, type your Server Key.
 
 ## Launch Server
-1. Move to `/T4Server/Plutonium` Folder.
+1. Move to `/PlutoniumLinuxHosting/Plutonium` Folder.
 2. Launch Server. 
 ```shell
 ./T4_**_server.sh
