@@ -93,6 +93,14 @@ The fourth command just starts [IW4MAdmin](https://github.com/RaidMax/IW4M-Admin
 - Removing the unnecessary game files, with default maps and a single custom map on a *AWS EC2 t3a.micro Ubuntu instance*, the occupied storage is around **9GB**.
 - While the Server is running, the HTTP Server is working for FastDL and one player has joined the lobby, the average memory consumption is **620MB**.
 
+## Important Notes!
+- Remember to open the server port using UFW with `sudo ufw allow 28961/udp`
+- There's a distinction for mods and maps when loading them. If you're loading a mod for a vanilla map, then your `dedicated_zm.cfg` will have this entry:
+  ```
+  set sv_mapRotation "loadmod \"mods/mod_name_here\" map nazi_zombie_factory"
+  ```
+  This will load the `mod mod_name_here` for Der Riese
+
 ## Issues
 ### Wine display errors
    + You shouldn't care about these errors, Plutonium servers don't have any graphical support.
