@@ -12,7 +12,7 @@ CFG=dedicated_zm.cfg
 PORT=28961
 # Game Mode ( Multiplayer / Zombie ) -> ( t4mp / t4sp )
 MODE=t4sp
-# Mod name (default "", (eg. "mods/nazi_zombie_ragnarok"))
+# Mod name (default "", (eg. "mods/nazi_zombie_ragnarok"), for multiple mods "mods/mod1 mods/mod2")
 MOD=""
 # Plutonium game dir, inside this repository
 INSTALLDIR="full_path_to_this_script_dir"
