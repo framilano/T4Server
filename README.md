@@ -105,6 +105,9 @@ The fourth command just starts [IW4MAdmin](https://github.com/RaidMax/IW4M-Admin
 ### Wine display errors
    + You shouldn't care about these errors, Plutonium servers don't have any graphical support.
 
+### IW4MAdmin missing dotnet
+  + `sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0`
+
 ### Unable to load import '_BinkWaitStopAsyncThread@4' from module 'binkw32.dll'
    + Check your PAT variable in `T4_**_server.sh`. (It will be ping binkw32.dll dir)
    + Make sure to your user can read the file in all sub-dir of  PlutoniumLinuxHosting.
