@@ -125,10 +125,7 @@ if [ "$firewall" = 'y' ] || [ "$firewall" = '' ] || [ "$firewall" = 'Y' ] ; then
     else
       echo "Skipping HTTP port configuration..."
     fi
-    
-
-  } > /dev/null 2>&1 &
-  Spinner "${mfirewall2}"
+  }
 fi
 
 # Installing Wine
@@ -153,8 +150,7 @@ if [ $winecheck == 'y' ] || [ $winecheck == '' ] || [ $winecheck == 'Y' ] ; then
     echo -e 'export DISPLAY=:0' >> ~/.bashrc
     source ~/.bashrc
     winecfg
-  } > /dev/null 2>&1 &
-  Spinner "${mwine2}"
+  }
 fi
 
 if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
@@ -173,8 +169,7 @@ if [ "$updater" = 'y' ] || [ "$updater" = '' ] || [ "$updater" = 'Y' ] ; then
       sudo chmod +x T5_mp_server.sh
       sudo chmod +x T5_zm_server.sh
 
-  } > /dev/null 2>&1 &
-  Spinner "${mupdater2}"
+  }
 fi
 
 if [ "$iw4admin" = 'y' ] || [ "$iw4admin" = '' ] || [ "$iw4admin" = 'Y' ] ; then
@@ -182,8 +177,7 @@ if [ "$iw4admin" = 'y' ] || [ "$iw4admin" = '' ] || [ "$iw4admin" = 'Y' ] ; then
   {
     sudo apt-get update && \
     sudo apt-get install -y aspnetcore-runtime-6.0
-  } > /dev/null 2>&1 &
-  Spinner "${miw4admin2}"
+  }
 fi
 
 mfinish='Installation finished.'
